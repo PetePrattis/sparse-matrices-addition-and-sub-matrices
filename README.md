@@ -28,7 +28,7 @@ For example if c = 80 then the program should return the sub array<br>
 > #### Functionality
 >
 > 1. User can choose to run between the two exercises for both implementations
-> 2. User can choose betwwen randomly or manually creating arrays for both exercise for both implementations
+> 2. User can choose betwwen randomly or manually creating arrays for both exercises for both implementations
 >
 
 > #### About this project
