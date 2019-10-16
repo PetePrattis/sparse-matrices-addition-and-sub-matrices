@@ -15,7 +15,7 @@ of the result table C. Finally, the program prints table C in its two-dimensiona
 >
 >>Exercise two is a program that returns a 2X2 sub table (if any) from table A, whose sum of elements is greater than a variable c. 
 For example if c = 80 then the program should return the sub array<br>
-[02  0]<br>
+[0 20]<br>
 [30 40] 
 >
 
