@@ -80,24 +80,24 @@ void PrintList(struct Node* start){
     printf("\n");
 }
 
-//μια μέθοδος η οποία καλείται από την main για την εύρεση της μήτρας που είναι το αποτέλεσμα του αθροίσματος 2 άλλων λιστών που περνιούνται στην μέθοδο
+//function that is called by main to find array that is the result of the addition of values of two linked-lists
 void add_arrays(struct Node* A, struct Node* B, int r, int c){ //
-    int S[r][c]; //αρχικοποίηση μιας μήτρας που έχει ίδιες διαστάσεις με τις μήτρες που δέχεται η μέθοδος ως είσοδο
-    std::fill(S[0], S[0] + r * c, 0); //την γεμίζω με μηδενικά
-    struct Node *temp1;//δημιουργώ ένα νέο αντικείμενο τύπου Node
-    struct Node *temp2;//δημιουργώ ένα νέο αντικείμενο τύπου Node
-    temp1 = A;//τα αρχικοποιώ με τα αντικείμενα που πέρασα μέσα στην μέθοδο αντίστοιχα
+    int S[r][c]; //initialize an array with same dimensions as the arrays passed through the funcation
+    std::fill(S[0], S[0] + r * c, 0); //insert zero values
+    struct Node *temp1;//create new struct of Node type
+    struct Node *temp2;//create new struct of Node type
+    temp1 = A;//insert values to the structs
     temp2 = B;
-    while (temp1 != NULL){//για κάθε αντικείμενο μέσα στο πρώτο αντικείμενο τύπου Node
-        S[temp1->rowp][temp1->colp] += temp1->value;//προσθέτω στην μηδενική μήτρα μου τις τιμές
+    while (temp1 != NULL){//for all objects inside the first stuct of Node type
+        S[temp1->rowp][temp1->colp] += temp1->value;//add to the S array the values
         temp1 = temp1->next;
     }
-    while (temp2 != NULL){//για κάθε αντικείμενο μέσα στο δεύτερο αντικείμενο τύπου Node
-        S[temp2->rowp][temp2->colp] += temp2->value;//προσθέτω στην μηδενική μήτρα μου τις τιμές
+    while (temp2 != NULL){//for all objects inside the second stuct of Node type
+        S[temp2->rowp][temp2->colp] += temp2->value;//add to the S array the values
         temp2 = temp2->next;
     }
 
-    print_array((int*)S, r, c); //περνάω την τιμή  της λίστας-άθροισμα που αντιστοιχεί στην διεύθυνση παραπομπής, μέσα στην μέθοδο print_array
+    print_array((int*)S, r, c); //pass the value of the list-sum corresponding to the referral address in the print_array method
 }
 
 //μια μέθοδος η οποία καλείται από την main για την εύρεση υπο-λίστας που ανήκει στην λίστα που δέχεται η μέθοδος ως είσοδο
