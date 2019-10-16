@@ -21,8 +21,8 @@ For example if c = 80 then the program should return the sub array C<br>
 
 > #### Functionality (2 implementations)
 >
-> 1. The first implementation uses 2d arrays
-> 2. The second implementation use linked-lists to reduce size and time complexity
+> 1. The first implementation uses linked-lists to reduce size and time complexity
+> 2. The second implementation uses 2D arrays
 >
 
 > #### About this project
