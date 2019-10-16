@@ -88,11 +88,11 @@ void add_arrays(struct Node* A, struct Node* B, int r, int c){ //
     struct Node *temp2;//create new struct of Node type
     temp1 = A;//insert values to the structs
     temp2 = B;
-    while (temp1 != NULL){//for all objects inside the first stuct of Node type
+    while (temp1 != NULL){//for all objects inside the first struct of Node type
         S[temp1->rowp][temp1->colp] += temp1->value;//add to the S array the values
         temp1 = temp1->next;
     }
-    while (temp2 != NULL){//for all objects inside the second stuct of Node type
+    while (temp2 != NULL){//for all objects inside the second struct of Node type
         S[temp2->rowp][temp2->colp] += temp2->value;//add to the S array the values
         temp2 = temp2->next;
     }
@@ -100,42 +100,42 @@ void add_arrays(struct Node* A, struct Node* B, int r, int c){ //
     print_array((int*)S, r, c); //pass the value of the list-sum corresponding to the referral address in the print_array method
 }
 
-//μια μέθοδος η οποία καλείται από την main για την εύρεση υπο-λίστας που ανήκει στην λίστα που δέχεται η μέθοδος ως είσοδο
+//function that is called by main to find sub array of the linked-list passed through the function
 void find_subarray(struct Node* A, int r, int c, int s){
-    int B[2][2];// αυτή θα είναι η μήτρα που θα σώζει τα στοιχεία κάθε 2Χ2 πίνακα του αρχικού μας πίνακα
-    std::fill(B[0], B[0] + 2 * 2, 0); //την γεμίζω με μηδενικά
-    int sr = r - 1;// κάθε μήτρα rXc περιέχει (r-1)X(c-1) υπομήτρες 2Χ2
+    int B[2][2];// this will be the array that saves the data of each 2X2 table of our original table
+    std::fill(B[0], B[0] + 2 * 2, 0); //fill with zero values
+    int sr = r - 1;// every array with dimensions rXc contains (r-1)X(c-1) sub arrays of 2Χ2 dimensions
     int sc = c - 1;
-    int S[sr][sc];// αυτή θα είναι η μήτρα που θα σώζει το άθροισμα κάθε στοιχείου κάθε υπομήτρας 2Χ2 του αρχικού πίνακα
-    std::fill(S[0], S[0] + sr * sc, 0); //την γεμίζω με μηδενικά
-    struct Node *temp;//δημιουργώ ένα νέο αντικείμενο τύπου Node
-    temp = A;//το αρχικοποιώ με το αντικείμενο που πέρασα μέσα στην μέθοδο
-    for (int i = 0; i < sr; i++){//για κάθε στοιχείο του πίνακα S
+    int S[sr][sc];// this will be the array that saves the sum of each element of each 2x2 sub array of the original array
+    std::fill(S[0], S[0] + sr * sc, 0); //fill with zeros
+    struct Node *temp;/
+    temp = A;
+    for (int i = 0; i < sr; i++){//for every value inside the S array
         for (int j = 0; j < sc; j++){
-            temp = A;//ξανα αρχικοποιώ το αντικείμενό μου με το αντικείμενο που πέρασα μέσα στην μέθοδο
-            std::fill(B[0], B[0] + 2 * 2, 0); //την γεμίζω με μηδενικά
-            while (temp != NULL){//για κάθε αντικείμενο μέσα στο αντικείμενο μου τύπου Node
-                if(temp->rowp == i && temp->colp == j){//αν η σειρά και η στήλη της τιμής είναι ίδιες με την θέση του στοιχείου της μήτρας S
-                    B[0][0] = temp->value;//αυτή η τιμή μπαίνει σε αυτήν την θέση της 2Χ2 μήτρας
-                    S[i][j] += temp->value;//προσθέτω την τιμή στο στοιχείο της μήτρας S
+            temp = A;
+            std::fill(B[0], B[0] + 2 * 2, 0); //fill with zeros
+            while (temp != NULL){//for all objects inside the struct of Node type
+                if(temp->rowp == i && temp->colp == j){//if column and row are the same as the value's location
+                    B[0][0] = temp->value;//we start building the sub 2X2 array
+                    S[i][j] += temp->value;//add the value at the S array
+                }//we do the same for all 4 elements of the 2X2 sub array
+                else if (temp->rowp == i && temp->colp == j + 1){
+                    B[0][1] = temp->value;
+                    S[i][j] += temp->value;
                 }
-                else if (temp->rowp == i && temp->colp == j + 1){//αν η σειρά είναι ίδια και η στήλη είναι + 1 με την θέση του στοιχείου της μήτρας S
-                    B[0][1] = temp->value;//αυτή η τιμή μπαίνει σε αυτήν την θέση της 2Χ2 μήτρας
-                    S[i][j] += temp->value;//προσθέτω την τιμή στο στοιχείο της μήτρας S
+                else if (temp->rowp == i + 1 && temp->colp == j){
+                    B[1][0] = temp->value;
+                    S[i][j] += temp->value;
                 }
-                else if (temp->rowp == i + 1 && temp->colp == j){//αν η σειρά είναι + 1 και η στήλη είναι ίδια με την θέση του στοιχείου της μήτρας S
-                    B[1][0] = temp->value;//αυτή η τιμή μπαίνει σε αυτήν την θέση της 2Χ2 μήτρας
-                    S[i][j] += temp->value;//προσθέτω την τιμή στο στοιχείο της μήτρας S
+                else if (temp->rowp == i +1 && temp->colp == j + 1){
+                    B[1][1] = temp->value;
+                    S[i][j] += temp->value;
                 }
-                else if (temp->rowp == i +1 && temp->colp == j + 1){//αν η σειρά και η στήλη της τιμής είναι +1 με την θέση του στοιχείου της μήτρας S
-                    B[1][1] = temp->value;//αυτή η τιμή μπαίνει σε αυτήν την θέση της 2Χ2 μήτρας
-                    S[i][j] += temp->value;//προσθέτω την τιμή στο στοιχείο της μήτρας S
-                }
-                temp = temp->next;//πάω στο επόμενο αντικείμενο
+                temp = temp->next;//go to next struct
             }
-            if (S[i][j] > s){//αν το άθροισμα αυτό είναι μεγαλύτερο από την μεταβλητή που έχουμε ορίσει ως όριο
+            if (S[i][j] > s){//if the sum saved inside the S array is greater than c then we print the sub array
                 cout<<"This sub-array's elements have a sum bigger than c:"<<endl;
-                print_array((int*)B, 2, 2); //περνάω την τιμή  της υπο-λίστας που αντιστοιχεί στην διεύθυνση παραπομπής, μέσα στην μέθοδο print_array
+                print_array((int*)B, 2, 2);
             }
         }
     }
