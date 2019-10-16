@@ -19,7 +19,7 @@ For example if c = 80 then the program should return the sub array<br>
 [30 40] 
 >
 
-> #### Functionality (2 implementations)
+> #### Implementations (2 ways)
 >
 > 1. The first implementation uses linked-lists to reduce size and time complexity
 > 2. The second implementation uses 2D arrays
