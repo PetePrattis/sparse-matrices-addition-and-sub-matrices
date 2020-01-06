@@ -2,7 +2,7 @@
 
 **This is a simple C++ project from my early days as a Computer Science student**
 
-_This programm was created for the second semester class Sata Structures 
+_This programm was created for the second semester class Data Structures 
 and is one of two such simple C++ programms neccessary to pass the class_
 
 
